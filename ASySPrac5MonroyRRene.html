@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Pr&aacute;ctica 5:Series de Fourier en tiempo continuo</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Objetivos</a></li><li><a href="#3">Introducci&oacute;n</a></li><li><a href="#12">Ejemplo 6.1</a></li><li><a href="#13">15 Armonicos</a></li><li><a href="#14">Ejemplo 6.2</a></li><li><a href="#15">15 armonicos</a></li><li><a href="#16">Ejemplo 6.4</a></li><li><a href="#17">15 armonicos</a></li><li><a href="#18">Ejercicio 6.5</a></li><li><a href="#19">15 armonicos</a></li><li><a href="#20">Ejemplo 6.7</a></li><li><a href="#21">15 armonicos</a></li><li><a href="#22">Ejercicio 6</a></li><li><a href="#23">Ejercicio 7</a></li><li><a href="#24">Conclusiones</a></li><li><a href="#25">Referencias</a></li></ul></div><div><ul><li>Integrantes del equipo</li><li>Alarcon Camacho Aldo yosef</li><li>Monroy Reza Rene</li><li>Ochoa Velasquez Jos&eacute; Abraham</li></ul></div><h2>Objetivos<a name="2"></a></h2><div><ul><li>Realizar gr&aacute;ficas de series de Fourier exponenciales y trigonom&eacute;tricas en tiempo continuo</li><li>Manipulaci&oacute;n de instrucciones en MATLAB</li><li>Calculo n&uacute;merico de los coeficientes de Fourier</li></ul></div><h2>Introducci&oacute;n<a name="3"></a></h2><div><ul><li>Aproximaci&oacute;n n&uacute;merica de los coeficientes de Fourier exponencial compleja</li></ul></div><p>Podemos calcular <img src="ASySPrac5MonroyRRene_eq13651414835754347523.png" alt="$Dn$"> num&eacute;ricamente usando el DFT (la transformada discreta de Fourier), que usa las muestras de una se&ntilde;al peri&oacute;dica <img src="ASySPrac5MonroyRRene_eq14833433867325483769.png" alt="$x(t)$"> durante un per&iacute;odo. El intervalo de muestreo es <img src="ASySPrac5MonroyRRene_eq14047577632175690031.png" alt="$T$"> segundos. Por lo tanto, hay <img src="ASySPrac5MonroyRRene_eq05053777696306134747.png" alt="$N_{0} = \frac{T_{0}}{T}$"> n&uacute;mero de muestras en un per&iacute;odo <img src="ASySPrac5MonroyRRene_eq07389878485796935067.png" alt="$T_{0}$">. Para encontrar la relaci&oacute;n entre <img src="ASySPrac5MonroyRRene_eq13651414835754347523.png" alt="$Dn$"> y las muestras de <img src="ASySPrac5MonroyRRene_eq14833433867325483769.png" alt="$x(t)$">, considere la ecuaci&oacute;n. (6.29b)</p><p><img vspace="5" hspace="5" src="E1.PNG" alt=""> </p><p>donde <img src="ASySPrac5MonroyRRene_eq06905719444939904769.png" alt="$x(kT)$"> es la k-&eacute;sima muestra de <img src="ASySPrac5MonroyRRene_eq14833433867325483769.png" alt="$x(t)$"> y</p><p><img vspace="5" hspace="5" src="E2.PNG" alt=""> </p><p>En la pr&aacute;ctica, es imposible hacer que <img src="ASySPrac5MonroyRRene_eq14359565863894663630.png" alt="$T\rightarrow 0$"> al calcular el lado derecho de la ecuaci&oacute;n. (6.96). Podemos hacer que <img src="ASySPrac5MonroyRRene_eq14047577632175690031.png" alt="$T$"> sea peque&ntilde;o, pero no cero, lo que hacer que los datos aumenten sin l&iacute;mite. Por lo tanto, ignoraremos el l&iacute;mite de <img src="ASySPrac5MonroyRRene_eq14047577632175690031.png" alt="$T$"> en la ecuaci&oacute;n. (6.96) con la comprensi&oacute;n impl&iacute;cita de que <img src="ASySPrac5MonroyRRene_eq14047577632175690031.png" alt="$T$"> es razonablemente peque&ntilde;o. <img src="ASySPrac5MonroyRRene_eq14047577632175690031.png" alt="$T$"> distinto de cero dar&aacute; como resultado alg&uacute;n error computacional, que es inevitable en cualquier evaluaci&oacute;n num&eacute;rica de una integral. El error resultante de <img src="ASySPrac5MonroyRRene_eq14047577632175690031.png" alt="$T$"> distinto de cero se denomina error de solapamiento. Por lo tanto, podemos expresar la ecuaci&oacute;n. (6.96) como:</p><p><img vspace="5" hspace="5" src="E3.PNG" alt=""> </p><p>Ahora, de la ecuaci&oacute;n.(6.97), <img src="ASySPrac5MonroyRRene_eq10323455347510753347.png" alt="$\Omega_{0}N_{0}=2\pi$">. Por lo tanto, <img src="ASySPrac5MonroyRRene_eq04625631461341572533.png" alt="$e^{j\Omega_{0}(k+N_{0})}=e^{j\Omega_{0}K}$"> y de la ecuaci&oacute;n. (6.98a), se deduce que:</p><p><img vspace="5" hspace="5" src="E4.PNG" alt=""> </p><p>La propiedad de periodicidad <img src="ASySPrac5MonroyRRene_eq03154453879718613841.png" alt="$D_{n+N_{0}}=D_{n}$"> significa que m&aacute;s all&aacute; de <img src="ASySPrac5MonroyRRene_eq10998102021768091761.png" alt="$n=\frac{N_{0}}{2}$">, los coeficientes representan los valores para <img src="ASySPrac5MonroyRRene_eq08984225997457563733.png" alt="$n$"> negativo. Por ejemplo, cuando <img src="ASySPrac5MonroyRRene_eq02210086270103668102.png" alt="$N_{0}=32, D_{17}=D_{-15}, D_{18}=D_{-14}, ..., D_{31}=D_{-1}$">. El ciclo se repite nuevamente desde <img src="ASySPrac5MonroyRRene_eq10919425313728369902.png" alt="$n=32$"> en adelante. Podemos usar la eficiente FFT (la transformada r&aacute;pida de Fourier) para calcular el lado derecho de la ecuaci&oacute;n. (6.98b). Nosotros utilizaremos MATLAB para implementar el algoritmo FFT. Para este prop&oacute;sito, necesitamos muestras de <img src="ASySPrac5MonroyRRene_eq14833433867325483769.png" alt="$x(t)$"> durante un per&iacute;odo que comience en <img src="ASySPrac5MonroyRRene_eq16912281546434447644.png" alt="$t=0$">. En este algoritmo, tambi&eacute;n es preferible (aunque no necesario) que <img src="ASySPrac5MonroyRRene_eq14093625070084323272.png" alt="$N_{0}$"> sea una potencia de 2, es decir <img src="ASySPrac5MonroyRRene_eq07116296932995235939.png" alt="$N_{0}=2m$">, donde <img src="ASySPrac5MonroyRRene_eq11319871188381094158.png" alt="$m$"> es un n&uacute;mero entero.</p><div><ul><li>Ejemplo 6.1</li></ul></div><p>Encuentre la serie de Fourier trigonom&eacute;trica compacta para la se&ntilde;al peri&oacute;dica <img src="ASySPrac5MonroyRRene_eq14833433867325483769.png" alt="$x(t)$"> que se muestra en la figura 6.2a. Dibuja los espectros de amplitud y fase para <img src="ASySPrac5MonroyRRene_eq14833433867325483769.png" alt="$x(t)$">.</p><p><img vspace="5" hspace="5" src="S.PNG" alt=""> </p><p>Las muestras de <img src="ASySPrac5MonroyRRene_eq14833433867325483769.png" alt="$x(t)$"> comienzan en <img src="ASySPrac5MonroyRRene_eq16912281546434447644.png" alt="$t=0$"> y la &uacute;ltima muestra <img src="ASySPrac5MonroyRRene_eq14093625070084323272.png" alt="$N_{0}$"> est&aacute; en <img src="ASySPrac5MonroyRRene_eq12640845487557261697.png" alt="$t=T_{0}-T$">. En los puntos de discontinuidad, el valor de la muestra se toma como el promedio de los valores de la funci&oacute;n en ambos lados de la discontinuidad. Por lo tanto, la muestra en %t=0% no es 1 sino %\frac{e^{? ? / 2} + 1}{2} = 0.6044. Para determinar <img src="ASySPrac5MonroyRRene_eq14093625070084323272.png" alt="$N_{0}$">, requerimos que <img src="ASySPrac5MonroyRRene_eq09969345159538061326.png" alt="$D_{n}$"> para <img src="ASySPrac5MonroyRRene_eq02027294890004623890.png" alt="$n\geq \frac{N_{n}}{2}$"> sea insignificante. Debido a que x(t) tiene una discontinuidad de salto, <img src="ASySPrac5MonroyRRene_eq09969345159538061326.png" alt="$D_{n}$"> decae bastante lentamente a medida que <img src="ASySPrac5MonroyRRene_eq15505600526388599575.png" alt="$\frac{1}{n}$">. Por lo tanto, una elecci&oacute;n de <img src="ASySPrac5MonroyRRene_eq04764945519962243329.png" alt="$N_{0} = 200$"> es aceptable porque el arm&oacute;nico <img src="ASySPrac5MonroyRRene_eq05342448912425614829.png" alt="$\frac{N_{0}}{2}da (100)$"> es aproximadamente el 1% del fundamental. Sin embargo, tambien requerimos que <img src="ASySPrac5MonroyRRene_eq14093625070084323272.png" alt="$N_{0}$"> sea una potencia de 2. Por lo tanto, tomaremos <img src="ASySPrac5MonroyRRene_eq14514724553411273939.png" alt="$N_{0}=256=2$">.</p><div><ul><li>Primero, se establecen los par&aacute;metros b&aacute;sicos.</li></ul></div><pre>T_0 = pi; N_0 = 256; T = T_0/N_0; t = (0:T:T*(N_0-1))'; M = 10;
+  </style></head><body><div class="content"><h1>Pr&aacute;ctica 5:Series de Fourier en tiempo continuo</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Objetivos</a></li><li><a href="#3">Introducci&oacute;n</a></li><li><a href="#12">Ejemplo 6.1</a></li><li><a href="#13">15 Armonicos</a></li><li><a href="#14">Ejemplo 6.2</a></li><li><a href="#15">15 armonicos</a></li><li><a href="#16">Ejemplo 6.4</a></li><li><a href="#17">15 armonicos</a></li><li><a href="#18">Ejercicio 6.5</a></li><li><a href="#19">15 armonicos</a></li><li><a href="#20">Ejemplo 6.7</a></li><li><a href="#21">15 armonicos</a></li><li><a href="#22">Ejercicio 6</a></li><li><a href="#23">Ejercicio 7</a></li><li><a href="#24">Conclusiones</a></li><li><a href="#25">Referencias</a></li></ul></div><div><ul><li>Integrantes del equipo</li><li>Alarcon Camacho Aldo yosef</li><li>Monroy Reza Rene</li><li>Ochoa Velasquez Jos&eacute; Abraham</li></ul></div><h2>Objetivos<a name="2"></a></h2><div><ul><li>Realizar gr&aacute;ficas de series de Fourier exponenciales y trigonom&eacute;tricas en tiempo continuo</li><li>Manipulaci&oacute;n de instrucciones en MATLAB</li><li>Calculo n&uacute;merico de los coeficientes de Fourier</li></ul></div><h2>Introducci&oacute;n<a name="3"></a></h2><div><ul><li>Aproximaci&oacute;n n&uacute;merica de los coeficientes de Fourier exponencial compleja</li></ul></div><p>Podemos calcular <img src="ASySPrac5MonroyRRene_eq13651414835754347523.png" alt="$Dn$"> num&eacute;ricamente usando el DFT (la transformada discreta de Fourier), que usa las muestras de una se&ntilde;al peri&oacute;dica <img src="ASySPrac5MonroyRRene_eq14833433867325483769.png" alt="$x(t)$"> durante un per&iacute;odo. El intervalo de muestreo es <img src="ASySPrac5MonroyRRene_eq14047577632175690031.png" alt="$T$"> segundos. Por lo tanto, hay <img src="ASySPrac5MonroyRRene_eq05053777696306134747.png" alt="$N_{0} = \frac{T_{0}}{T}$"> n&uacute;mero de muestras en un per&iacute;odo <img src="ASySPrac5MonroyRRene_eq07389878485796935067.png" alt="$T_{0}$">. Para encontrar la relaci&oacute;n entre <img src="ASySPrac5MonroyRRene_eq13651414835754347523.png" alt="$Dn$"> y las muestras de <img src="ASySPrac5MonroyRRene_eq14833433867325483769.png" alt="$x(t)$">, considere la ecuaci&oacute;n. (6.29b)</p><p><img vspace="5" hspace="5" src="E1.png" alt=""> </p><p>donde <img src="ASySPrac5MonroyRRene_eq06905719444939904769.png" alt="$x(kT)$"> es la k-&eacute;sima muestra de <img src="ASySPrac5MonroyRRene_eq14833433867325483769.png" alt="$x(t)$"> y</p><p><img vspace="5" hspace="5" src="E2.png" alt=""> </p><p>En la pr&aacute;ctica, es imposible hacer que <img src="ASySPrac5MonroyRRene_eq14359565863894663630.png" alt="$T\rightarrow 0$"> al calcular el lado derecho de la ecuaci&oacute;n. (6.96). Podemos hacer que <img src="ASySPrac5MonroyRRene_eq14047577632175690031.png" alt="$T$"> sea peque&ntilde;o, pero no cero, lo que hacer que los datos aumenten sin l&iacute;mite. Por lo tanto, ignoraremos el l&iacute;mite de <img src="ASySPrac5MonroyRRene_eq14047577632175690031.png" alt="$T$"> en la ecuaci&oacute;n. (6.96) con la comprensi&oacute;n impl&iacute;cita de que <img src="ASySPrac5MonroyRRene_eq14047577632175690031.png" alt="$T$"> es razonablemente peque&ntilde;o. <img src="ASySPrac5MonroyRRene_eq14047577632175690031.png" alt="$T$"> distinto de cero dar&aacute; como resultado alg&uacute;n error computacional, que es inevitable en cualquier evaluaci&oacute;n num&eacute;rica de una integral. El error resultante de <img src="ASySPrac5MonroyRRene_eq14047577632175690031.png" alt="$T$"> distinto de cero se denomina error de solapamiento. Por lo tanto, podemos expresar la ecuaci&oacute;n. (6.96) como:</p><p><img vspace="5" hspace="5" src="E3.png" alt=""> </p><p>Ahora, de la ecuaci&oacute;n.(6.97), <img src="ASySPrac5MonroyRRene_eq10323455347510753347.png" alt="$\Omega_{0}N_{0}=2\pi$">. Por lo tanto, <img src="ASySPrac5MonroyRRene_eq04625631461341572533.png" alt="$e^{j\Omega_{0}(k+N_{0})}=e^{j\Omega_{0}K}$"> y de la ecuaci&oacute;n. (6.98a), se deduce que:</p><p><img vspace="5" hspace="5" src="E4.png" alt=""> </p><p>La propiedad de periodicidad <img src="ASySPrac5MonroyRRene_eq03154453879718613841.png" alt="$D_{n+N_{0}}=D_{n}$"> significa que m&aacute;s all&aacute; de <img src="ASySPrac5MonroyRRene_eq10998102021768091761.png" alt="$n=\frac{N_{0}}{2}$">, los coeficientes representan los valores para <img src="ASySPrac5MonroyRRene_eq08984225997457563733.png" alt="$n$"> negativo. Por ejemplo, cuando <img src="ASySPrac5MonroyRRene_eq02210086270103668102.png" alt="$N_{0}=32, D_{17}=D_{-15}, D_{18}=D_{-14}, ..., D_{31}=D_{-1}$">. El ciclo se repite nuevamente desde <img src="ASySPrac5MonroyRRene_eq10919425313728369902.png" alt="$n=32$"> en adelante. Podemos usar la eficiente FFT (la transformada r&aacute;pida de Fourier) para calcular el lado derecho de la ecuaci&oacute;n. (6.98b). Nosotros utilizaremos MATLAB para implementar el algoritmo FFT. Para este prop&oacute;sito, necesitamos muestras de <img src="ASySPrac5MonroyRRene_eq14833433867325483769.png" alt="$x(t)$"> durante un per&iacute;odo que comience en <img src="ASySPrac5MonroyRRene_eq16912281546434447644.png" alt="$t=0$">. En este algoritmo, tambi&eacute;n es preferible (aunque no necesario) que <img src="ASySPrac5MonroyRRene_eq14093625070084323272.png" alt="$N_{0}$"> sea una potencia de 2, es decir <img src="ASySPrac5MonroyRRene_eq07116296932995235939.png" alt="$N_{0}=2m$">, donde <img src="ASySPrac5MonroyRRene_eq11319871188381094158.png" alt="$m$"> es un n&uacute;mero entero.</p><div><ul><li>Ejemplo 6.1</li></ul></div><p>Encuentre la serie de Fourier trigonom&eacute;trica compacta para la se&ntilde;al peri&oacute;dica <img src="ASySPrac5MonroyRRene_eq14833433867325483769.png" alt="$x(t)$"> que se muestra en la figura 6.2a. Dibuja los espectros de amplitud y fase para <img src="ASySPrac5MonroyRRene_eq14833433867325483769.png" alt="$x(t)$">.</p><p><a href="<eq.png">&lt;eq.png</a></p><p>Las muestras de <img src="ASySPrac5MonroyRRene_eq14833433867325483769.png" alt="$x(t)$"> comienzan en <img src="ASySPrac5MonroyRRene_eq16912281546434447644.png" alt="$t=0$"> y la &uacute;ltima muestra <img src="ASySPrac5MonroyRRene_eq14093625070084323272.png" alt="$N_{0}$"> est&aacute; en <img src="ASySPrac5MonroyRRene_eq12640845487557261697.png" alt="$t=T_{0}-T$">. En los puntos de discontinuidad, el valor de la muestra se toma como el promedio de los valores de la funci&oacute;n en ambos lados de la discontinuidad. Por lo tanto, la muestra en %t=0% no es 1 sino %\frac{e^{? ? / 2} + 1}{2} = 0.6044. Para determinar <img src="ASySPrac5MonroyRRene_eq14093625070084323272.png" alt="$N_{0}$">, requerimos que <img src="ASySPrac5MonroyRRene_eq09969345159538061326.png" alt="$D_{n}$"> para <img src="ASySPrac5MonroyRRene_eq02027294890004623890.png" alt="$n\geq \frac{N_{n}}{2}$"> sea insignificante. Debido a que x(t) tiene una discontinuidad de salto, <img src="ASySPrac5MonroyRRene_eq09969345159538061326.png" alt="$D_{n}$"> decae bastante lentamente a medida que <img src="ASySPrac5MonroyRRene_eq15505600526388599575.png" alt="$\frac{1}{n}$">. Por lo tanto, una elecci&oacute;n de <img src="ASySPrac5MonroyRRene_eq04764945519962243329.png" alt="$N_{0} = 200$"> es aceptable porque el arm&oacute;nico <img src="ASySPrac5MonroyRRene_eq05342448912425614829.png" alt="$\frac{N_{0}}{2}da (100)$"> es aproximadamente el 1% del fundamental. Sin embargo, tambien requerimos que <img src="ASySPrac5MonroyRRene_eq14093625070084323272.png" alt="$N_{0}$"> sea una potencia de 2. Por lo tanto, tomaremos <img src="ASySPrac5MonroyRRene_eq14514724553411273939.png" alt="$N_{0}=256=2$">.</p><div><ul><li>Primero, se establecen los par&aacute;metros b&aacute;sicos.</li></ul></div><pre>T_0 = pi; N_0 = 256; T = T_0/N_0; t = (0:T:T*(N_0-1))'; M = 10;
 x = exp(-t/2); x(1) = (exp(-pi/2) + 1)/2;</pre><p>A continuaci&oacute;n, el DFT, calculado mediante la funci&oacute;n fft, se usa para aproximar los espectros de Fourier exponenciales sobre -M&lt;=n&lt;=M.</p><pre>D_n = fft (x)/N_0; n = [-N_0/2:N_0/2-1]';
 clf; subplot (2, 2, 1); stem(n, abs(fftshift (D_n)),'k');
 axis ([-M M -.1 .6]); xlabel('n'); ylabel('|D_n|');
@@ -76,7 +76,7 @@ theta_n(1) = angle(D_n(1)); theta_n(2:M+1) = angle(D_n(2:M+1));
 subplot (2, 2, 3); stem(n,C_n,'k');
 xlabel ('n'); ylabel('C_n');
 subplot (2, 2, 4); stem(n,theta_n,'k');
-xlabel ('n'); ylabel('\theta n [rad]');</pre><p>Lo que resulta:</p><p><img vspace="5" hspace="5" src="SE.PNG" alt=""> </p><h2>Ejemplo 6.1<a name="12"></a></h2><pre class="codeinput">dn=@(n) 0.504/(1+4*n*1j);
+xlabel ('n'); ylabel('\theta n [rad]');</pre><p>Lo que resulta:</p><p><img vspace="5" hspace="5" src="eq1.PNG" alt=""> </p><h2>Ejemplo 6.1<a name="12"></a></h2><pre class="codeinput">dn=@(n) 0.504/(1+4*n*1j);
 f=@(t) exp(-t/2);
 sfc(0,pi,dn,0.504,f,4,-3*pi,3*pi)
 </pre><img vspace="5" hspace="5" src="ASySPrac5MonroyRRene_01.png" alt=""> <h2>15 Armonicos<a name="13"></a></h2><pre class="codeinput">dn=@(n) 0.504/(1+4*n*1j);
@@ -115,9 +115,9 @@ armo=4;
 a=-pi;
 b=4*pi;
 sfc1(t0,tf,dn,d1,d0,f,armo,a,b)
-</pre><h2>15 armonicos<a name="19"></a></h2><pre class="codeinput">armo=15;
+</pre><img vspace="5" hspace="5" src="ASySPrac5MonroyRRene_07.png" alt=""> <h2>15 armonicos<a name="19"></a></h2><pre class="codeinput">armo=15;
 sfc1(t0,tf,dn,d1,d0,f,armo,a,b)
-</pre><img vspace="5" hspace="5" src="ASySPrac5MonroyRRene_07.png" alt=""> <h2>Ejemplo 6.7<a name="20"></a></h2><pre class="codeinput">d1=0;
+</pre><img vspace="5" hspace="5" src="ASySPrac5MonroyRRene_08.png" alt=""> <h2>Ejemplo 6.7<a name="20"></a></h2><pre class="codeinput">d1=0;
 d0=2/pi;
 dn=@(n)  1/3;
 t0=-3;
@@ -126,9 +126,9 @@ armo=4;
 a=-15;
 b=15;
 sfc2(t0,tf,dn,d1,d0,armo,a,b)
-</pre><img vspace="5" hspace="5" src="ASySPrac5MonroyRRene_08.png" alt=""> <h2>15 armonicos<a name="21"></a></h2><pre class="codeinput">armo=15;
+</pre><img vspace="5" hspace="5" src="ASySPrac5MonroyRRene_09.png" alt=""> <h2>15 armonicos<a name="21"></a></h2><pre class="codeinput">armo=15;
 sfc2(t0,tf,dn,d1,d0,armo,a,b)
-</pre><img vspace="5" hspace="5" src="ASySPrac5MonroyRRene_09.png" alt=""> <h2>Ejercicio 6<a name="22"></a></h2><pre class="codeinput">f=@(t) ((6*t).*(heaviside(t+0.5)-heaviside(t-0.5)))+((6-6*t).*(heaviside(t-0.5)-heaviside(t-1.5))) ;
+</pre><img vspace="5" hspace="5" src="ASySPrac5MonroyRRene_10.png" alt=""> <h2>Ejercicio 6<a name="22"></a></h2><pre class="codeinput">f=@(t) ((6*t).*(heaviside(t+0.5)-heaviside(t-0.5)))+((6-6*t).*(heaviside(t-0.5)-heaviside(t-1.5))) ;
 t=-4:0.001:6;
 sumterms=zeros(15,length(t));
 <span class="keyword">for</span> n=1:size(sumterms)
@@ -149,7 +149,7 @@ ind=0;
     xlabel (<span class="string">'t'</span>)
     ylabel ([<span class="string">'f{'</span>,num2str(N),<span class="string">'} (t)'</span>]);
 <span class="keyword">end</span>
-</pre><img vspace="5" hspace="5" src="ASySPrac5MonroyRRene_10.png" alt=""> <h2>Ejercicio 7<a name="23"></a></h2><p><b>Funcion del Trapecio Compuesto</b></p><pre class="language-matlab">
+</pre><img vspace="5" hspace="5" src="ASySPrac5MonroyRRene_11.png" alt=""> <h2>Ejercicio 7<a name="23"></a></h2><p><b>Funcion del Trapecio Compuesto</b></p><pre class="language-matlab">
 <span class="keyword">function</span> trapcom=in(f,a,b,n)
 h=(b-a)/n;
 f0=f(a);
@@ -238,12 +238,12 @@ ans =
 % $T_{0}$. Para encontrar la relación entre $Dn$ y las muestras de $x(t)$, considere la ecuación. (6.29b)
 %%
 % 
-% <<E1.PNG>>
+% <<E1.png>>
 % 
 % donde $x(kT)$ es la k-ésima muestra de $x(t)$ y
 %%
 % 
-% <<E2.PNG>>
+% <<E2.png>>
 % 
 % En la práctica, es imposible hacer que $T\rightarrow 0$ al calcular el lado derecho de la ecuación. (6.96). Podemos hacer que $T$ sea pequeño, pero no cero, lo que
 % hacer que los datos aumenten sin límite. Por lo tanto, ignoraremos el límite de $T$ en la ecuación. (6.96) con la comprensión implícita de que $T$ es
@@ -252,13 +252,13 @@ ans =
 % (6.96) como:
 %%
 % 
-% <<E3.PNG>>
+% <<E3.png>>
 % 
 % Ahora, de la ecuación.(6.97), $\Omega_{0}N_{0}=2\pi$. Por lo tanto,
 % $e^{j\Omega_{0}(k+N_{0})}=e^{j\Omega_{0}K}$ y de la ecuación. (6.98a), se deduce que:
 %%
 % 
-% <<E4.PNG>>
+% <<E4.png>>
 % 
 % La propiedad de periodicidad $D_{n+N_{0}}=D_{n}$ significa que más allá de $n=\frac{N_{0}}{2}$, los coeficientes representan los valores para $n$ negativo. Por ejemplo, cuando
 % $N_{0}=32, D_{17}=D_{-15}, D_{18}=D_{-14}, ..., D_{31}=D_{-1}$. El ciclo se repite nuevamente desde $n=32$ en adelante.
@@ -270,9 +270,10 @@ ans =
 %
 % Encuentre la serie de Fourier trigonométrica compacta para la señal periódica $x(t)$ que se muestra en la figura 6.2a. Dibuja los espectros de amplitud y fase
 % para $x(t)$.
-% 
-% <<S.PNG>>
-% 
+%%
+%
+% <<eq.png>
+%
 % Las muestras de $x(t)$ comienzan en $t=0$ y la última muestra $N_{0}$ está en $t=T_{0}-T$. En los puntos de discontinuidad, el valor de la muestra se toma como
 % el promedio de los valores de la función en ambos lados de la discontinuidad. Por lo tanto, la muestra en %t=0% no es 1 sino %\frac{e^{? ? / 2} + 1}{2} = 0.6044.
 % Para determinar $N_{0}$, requerimos que $D_{n}$ para $n\geq \frac{N_{n}}{2}$ sea insignificante. Debido a que x(t) tiene una discontinuidad de salto, $D_{n}$ decae bastante lentamente a medida que
@@ -311,9 +312,9 @@ ans =
 % 
 %
 % Lo que resulta:
-%%
 % 
-% <<SE.PNG>>
+% <<eq1.PNG>>
+% 
 % 
 %% Ejemplo 6.1
 dn=@(n) 0.504/(1+4*n*1j);
